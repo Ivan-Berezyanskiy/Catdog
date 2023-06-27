@@ -10,9 +10,9 @@ def preprocess_image(image):
     return img_array
 
 
-def load_and_preprocess_image(path: str):
+def load_and_preprocess_image(image_path: str):
     image = tf.keras.preprocessing.image.load_img(
-        path, target_size=IMAGE_SIZE
+        image_path, target_size=IMAGE_SIZE
     )
 
     return preprocess_image(image)
@@ -22,9 +22,11 @@ def classify(model, image_path: str):
     preprocessed_image = load_and_preprocess_image(image_path)
     predictions = model.predict(preprocessed_image)
 
-    score = predictions[8][8]
+    score = predictions[0][0]
 
     label = "cat" if score <= 0.5 else "dog"
     prob = 1 - score if label == "cat" else score
+
+    prob = round(prob * 100, 2)
 
     return label, prob
