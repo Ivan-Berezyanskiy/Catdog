@@ -5,29 +5,36 @@ from flask import Flask, request, render_template
 
 from classificator import classify
 
-app = Flask(__name__)
+STATIC_FOLDER = "web/static/"
+TEMPLATES_FOLDER = "web/templates/"
 
-STATIC_FOLDER = "static/"
-UPLOAD_FOLDER = "static/upload/"
+
+app = Flask(__name__,
+            template_folder="../" + TEMPLATES_FOLDER,
+            static_url_path="",
+            static_folder="../" + STATIC_FOLDER,
+            )
+
+UPLOAD_FOLDER = STATIC_FOLDER + "upload/"
 
 cnn_model = tf.keras.models.load_model(STATIC_FOLDER + "/models/" + "cat_dog.keras")
 
 
 @app.get("/")
 def home():
+    print("asd")
     return render_template("home.html")
 
 
-@app.get("/res/")
+@app.post("/")
 def upload_image():
+    print(123)
     file = request.files["image"]
+    print(123)
     upload_image_path = os.path.join(UPLOAD_FOLDER, file.filename)
 
     file.save(upload_image_path)
 
     label, prob = classify(cnn_model, upload_image_path)
 
-    return {
-        "label": label,
-        "prob": prob
-    }
+    return render_template("classification-res.html", label=label, prob=prob)

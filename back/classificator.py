@@ -24,8 +24,8 @@ def classify(model, image_path: str):
 
     score = predictions[0][0]
 
-    label = "cat" if score <= 0.5 else "dog"
-    prob = 1 - score if label == "cat" else score
+    label = "Cat" if score <= 0.5 else "Dog"
+    prob = 1 - score if label == "Cat" else score
 
     prob = round(prob * 100, 2)
 
