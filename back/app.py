@@ -17,7 +17,9 @@ app = Flask(__name__,
 
 UPLOAD_FOLDER = STATIC_FOLDER + "upload/"
 
-cnn_model = tf.keras.models.load_model(STATIC_FOLDER + "/models/" + "cat_dog.keras")
+cnn_model = tf.keras.models.load_model(
+    STATIC_FOLDER + "/models/" + "cat_dog.keras"
+)
 
 
 @app.get("/")

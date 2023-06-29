@@ -4,7 +4,7 @@
 web/static/upload/*
 !web/static/upload/cat_example.jpg
 !web/static/upload/dog_example.jpg
-
+.flake8
 ### Flask ###
 instance/*
 !instance/.gitignore
