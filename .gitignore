@@ -2,6 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask,python,pycharm+all
 
 web/static/upload/*
+!web/static/upload/cat_example.jpg
+!web/static/upload/dog_example.jpg
 
 ### Flask ###
 instance/*

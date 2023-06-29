@@ -22,15 +22,12 @@ cnn_model = tf.keras.models.load_model(STATIC_FOLDER + "/models/" + "cat_dog.ker
 
 @app.get("/")
 def home():
-    print("asd")
     return render_template("home.html")
 
 
 @app.post("/")
 def upload_image():
-    print(123)
     file = request.files["image"]
-    print(123)
     upload_image_path = os.path.join(UPLOAD_FOLDER, file.filename)
 
     file.save(upload_image_path)
