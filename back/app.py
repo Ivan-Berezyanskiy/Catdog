@@ -1,9 +1,9 @@
 import os
 
 import tensorflow as tf
-from flask import Flask, request
+from flask import Flask, request, render_template
 
-from classifacator import classify
+from classificator import classify
 
 app = Flask(__name__)
 
@@ -15,10 +15,10 @@ cnn_model = tf.keras.models.load_model(STATIC_FOLDER + "/models/" + "cat_dog.ker
 
 @app.get("/")
 def home():
-    return "Hello"
+    return render_template("home.html")
 
 
-@app.post("/")
+@app.get("/res/")
 def upload_image():
     file = request.files["image"]
     upload_image_path = os.path.join(UPLOAD_FOLDER, file.filename)

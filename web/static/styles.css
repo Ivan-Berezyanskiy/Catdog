@@ -1,0 +1,21 @@
+.home {
+    background-image: url("images/home.jpg");
+}
+
+.res {
+    background-image: url("images/classification_res.png");
+}
+
+.bg-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -2rem;
+}
+
+.big {
+    font-size: 25px;
+}
+
+.center {
+    margin: 25% 25% 25% 25%
+}
